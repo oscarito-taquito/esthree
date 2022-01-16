@@ -1,13 +1,17 @@
 import os
 import boto3
 
-s3 = boto3.resource('s3')
+# instantiate S3 connection (using
+client = boto3.client('s3')
 
+# set your current working dir, filepath and target bucket name
 cur_path = os.getcwd()
-filename = os.path.join(cur_path, 'profiles_007.csv')
-for bucket in s3.buckets.all():
-    print(bucket.name)
+file = 'profiles_007.csv'
+filename = os.path.join(cur_path, 'data', file)
+bucket = 's3-osk-bucket-3000'
 
+# open the file you're about to upload
 data = open(filename, 'rb')
-s3.Bucket('s3-storage-osk-play').put_object(Key='profiles_007.csv', Body=data)
 
+# load the file into S3
+client.upload_file(filename, bucket, file)
