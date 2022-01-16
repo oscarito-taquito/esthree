@@ -10,5 +10,6 @@ response = client.list_buckets()
 for b in response['Buckets']:
     print(b)
 
+# list your buckets and compare on console
 for n in response['Buckets']:
     print(n['Name'])
