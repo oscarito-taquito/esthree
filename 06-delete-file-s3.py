@@ -1,4 +1,3 @@
-import os
 import boto3
 
 # instantiate S3 connection
